@@ -34,6 +34,7 @@ public class BookController {
 
 	@GetMapping("/getBookById/{id}")
 	public Optional<Book> getBookById(@PathVariable int id) {
+		System.out.println("Request for Book ID :"+ id);
 		return bookRepository.findById(id);
 	}
 
