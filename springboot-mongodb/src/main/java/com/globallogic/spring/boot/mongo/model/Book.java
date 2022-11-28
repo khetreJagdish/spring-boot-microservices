@@ -3,6 +3,9 @@ package com.globallogic.spring.boot.mongo.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 @Document(collection = "Book")
 public class Book {
 
@@ -11,6 +14,8 @@ public class Book {
 	private String bookName;
 	private String authorName;
 	
+	
+	private String contentType;
 	
 	private int isbn;
 	
@@ -41,6 +46,14 @@ public class Book {
 	public void setIsbn(int isbn) {
 		this.isbn = isbn;
 	}
+	
+	@JsonInclude(Include.NON_NULL)
+	public String getContentType() {
+		return contentType;
+	}
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -50,11 +63,15 @@ public class Book {
 		builder.append(bookName);
 		builder.append(", authorName=");
 		builder.append(authorName);
+		builder.append(", contentType=");
+		builder.append(contentType);
 		builder.append(", isbn=");
 		builder.append(isbn);
 		builder.append("]");
 		return builder.toString();
 	}
+	
+	
 	
 	
 	
